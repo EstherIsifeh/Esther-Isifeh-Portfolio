@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esther Isifeh — Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d;
+    --ink-2: #3a3733;
+    --ink-3: #7a756e;
+    --cream: #faf8f4;
+    --cream-2: #f0ebe2;
+    --cream-3: #e4ddd0;
+    --accent: #c8522a;
+    --accent-2: #e8a87c;
+    --teal: #2a6b6b;
+    --teal-light: #e0eeee;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cream-3);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--cream);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 0.55rem 1.25rem;
+    border-radius: 100px;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+  .hero-left {
+    padding: 6rem 3rem 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 24px; height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink-2);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-secondary {
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    border-bottom: 1px solid var(--cream-3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--cream-3);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-right {
+    background: var(--cream-2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .hero-right-inner {
+    padding: 3rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .hero-visual-cards {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+  }
+  .floating-card {
+    background: white;
+    border: 1px solid var(--cream-3);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: floatUp 3s ease-in-out infinite;
+  }
+  .floating-card:nth-child(2) { animation-delay: 0.6s; margin-left: 2rem; }
+  .floating-card:nth-child(3) { animation-delay: 1.2s; margin-right: 1rem; }
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .card-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dot-teal { background: var(--teal); }
+  .dot-accent { background: var(--accent); }
+  .dot-amber { background: #d4a843; }
+  .card-text { font-size: 0.82rem; color: var(--ink-2); font-weight: 400; }
+  .card-val { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--ink); }
+  .hero-badge {
+    position: absolute;
+    top: 2.5rem; right: 2.5rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 100px;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.72rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--ink-3);
+    margin-bottom: 1.5rem;
+  }
+  .section-label::after {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--cream-3);
+  }
+
+  /* ABOUT */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    background: var(--cream);
+  }
+  .about-left h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .about-left h2 em { font-style: italic; color: var(--accent); }
+  .about-left p {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: var(--ink-2);
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .about-links { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+  .pill-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    border: 1px solid var(--cream-3);
+    border-radius: 100px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .pill-link:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+  .about-right { padding-top: 3.5rem; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .skill-card {
+    background: var(--cream-2);
+    border: 1px solid var(--cream-3);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .skill-card-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag {
+    font-size: 0.75rem;
+    background: var(--cream);
+    border: 1px solid var(--cream-3);
+    border-radius: 100px;
+    padding: 0.25rem 0.7rem;
+    color: var(--ink-2);
+    font-weight: 400;
+  }
+  .companies {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--cream-3);
+  }
+  .companies-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--ink-3); margin-bottom: 1.2rem; font-weight: 500;
+  }
+  .company-list {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .company-pill {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    background: var(--cream);
+    border: 1px solid var(--cream-3);
+    border-radius: 100px;
+    padding: 0.45rem 1rem;
+  }
+
+  /* PROJECTS */
+  #projects {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  #projects .section-label { color: rgba(255,255,255,0.35); }
+  #projects .section-label::after { background: rgba(255,255,255,0.1); }
+  #projects h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+  #projects h2 em { font-style: italic; color: var(--accent-2); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .project-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 20px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s, transform 0.2s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-3px);
+  }
+  .project-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .project-number {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.06);
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .project-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-radius: 100px;
+    padding: 0.3rem 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+  .tag-health { background: rgba(42,107,107,0.25); color: #7bc8c8; }
+  .tag-civic  { background: rgba(200,82,42,0.2); color: var(--accent-2); }
+  .tag-hr     { background: rgba(212,168,67,0.2); color: #e8c87c; }
+  .tag-martech { background: rgba(150,100,200,0.2); color: #c4a0e8; }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.5rem;
+  }
+  .project-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .project-meta-item { }
+  .meta-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.3);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .meta-val {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+  }
+  .project-arrow {
+    position: absolute;
+    bottom: 1.75rem; right: 1.75rem;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+    transition: all 0.2s;
+  }
+  .project-card:hover .project-arrow {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .project-visual {
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-visual svg { opacity: 0.4; }
+
+  /* PROCESS */
+  #process {
+    background: var(--cream-2);
+  }
+  #process h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+  #process h2 em { font-style: italic; color: var(--accent); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .process-step {
+    padding: 2rem;
+    border-right: 1px solid var(--cream-3);
+    position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--cream-3);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .step-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .step-desc {
+    font-size: 0.83rem;
+    font-weight: 300;
+    color: var(--ink-3);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--cream);
+    text-align: center;
+    padding: 8rem 3rem;
+  }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+  #contact .section-label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--cream-3); }
+  #contact h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  #contact h2 em { font-style: italic; color: var(--accent); }
+  #contact p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-2);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+  }
+  .contact-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 3rem;
+    background: var(--ink);
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+  }
+  footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+  footer a:hover { color: var(--accent-2); }
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    #about { grid-template-columns: 1fr; gap: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .project-visual { display: none; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-step { border-bottom: 1px solid var(--cream-3); }
+    .process-step:nth-child(odd) { border-right: 1px solid var(--cream-3); }
+    .process-step:nth-child(even) { border-right: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Esther Isifeh</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#process">Approach</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:esther.isifeh@gmail.com" class="nav-cta">Let's talk →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Product Manager · Lagos, Nigeria</div>
+    <h1>I build products<br>people <em>actually</em><br>want to use.</h1>
+    <p class="hero-desc">4+ years crafting user-centred digital products across HealthTech, HR Tech, Civic Tech, and MarTech — from zero to launch and beyond.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View my work →</a>
+      <a href="mailto:esther.isifeh@gmail.com" class="btn-secondary">esther.isifeh@gmail.com ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">4+</span>
+        <span class="stat-label">Years experience</span>
+      </div>
+      <div>
+        <span class="stat-num">4</span>
+        <span class="stat-label">Industries</span>
+      </div>
+      <div>
+        <span class="stat-num">3M+</span>
+        <span class="stat-label">Users impacted</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <span class="hero-badge">Open to roles</span>
+    <div class="hero-visual-cards">
+      <div class="floating-card">
+        <div class="card-dot dot-teal"></div>
+        <div>
+          <div class="card-text">LavenderCare · Mobile App</div>
+          <div class="card-val">Maternal Health Platform</div>
+        </div>
+      </div>
+      <div class="floating-card">
+        <div class="card-dot dot-accent"></div>
+        <div>
+          <div class="card-text">3MTT · WorkNigeria</div>
+          <div class="card-val">3M Fellows · FG Initiative</div>
+        </div>
+      </div>
+      <div class="floating-card">
+        <div class="card-dot dot-amber"></div>
+        <div>
+          <div class="card-text">Terragon · White-Label Fintech</div>
+          <div class="card-val">SME Facebook Ads via Airtime</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left fade-in">
+    <div class="section-label">About</div>
+    <h2>Microbiology grad<br>turned <em>PM</em>.<br>Still obsessed<br>with systems.</h2>
+    <p>Hi, I'm Esther — a Product Manager based in Lagos with 4+ years building digital products that solve real problems for real people. My background in Microbiology taught me to think in systems, and I've carried that rigour into every product I've touched.</p>
+    <p>I've led products across HealthTech (LavenderCare), HR Tech and Civic Tech (WorkNigeria / 3MTT), MarTech (Terragon), and AI-powered productivity (Kiub.ai). I thrive in cross-functional teams, love a messy discovery phase, and always come back to the user.</p>
+    <p>When I'm not writing PRDs or running user interviews, I'm writing about product management and mentoring aspiring PMs.</p>
+    <div class="about-links">
+      <a href="https://linkedin.com/in/estherisifeh" target="_blank" class="pill-link">LinkedIn ↗</a>
+      <a href="mailto:esther.isifeh@gmail.com" class="pill-link">Email me</a>
+      <a href="#projects" class="pill-link">See my work →</a>
+    </div>
+  </div>
+
+  <div class="about-right fade-in">
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Strategy & Discovery</div>
+        <div class="skill-tags">
+          <span class="skill-tag">PRDs</span>
+          <span class="skill-tag">Roadmapping</span>
+          <span class="skill-tag">User Research</span>
+          <span class="skill-tag">A/B Testing</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Delivery & Execution</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Agile/Scrum</span>
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Confluence</span>
+          <span class="skill-tag">User Stories</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Design & Insight</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Hotjar</span>
+          <span class="skill-tag">Analytics</span>
+          <span class="skill-tag">Miro</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Domains</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HealthTech</span>
+          <span class="skill-tag">FinTech</span>
+          <span class="skill-tag">HR Tech</span>
+          <span class="skill-tag">AI Products</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="companies">
+      <div class="companies-label">Worked with</div>
+      <div class="company-list">
+        <span class="company-pill">LavenderCare</span>
+        <span class="company-pill">WorkNigeria</span>
+        <span class="company-pill">Terragon Group</span>
+        <span class="company-pill">Kiub.ai</span>
+        <span class="company-pill">Federal Govt of Nigeria</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected work</div>
+  <h2>Products I've<br>helped <em>ship</em>.</h2>
+
+  <div class="projects-grid">
+
+    <!-- LavenderCare - featured -->
+    <a href="lavendercare.html" class="project-card featured fade-in">
+      <div>
+        <span class="project-number">01</span>
+        <span class="project-tag tag-health">HealthTech · FemTech</span>
+        <div class="project-title">LavenderCare — Maternal Health Platform</div>
+        <p class="project-desc">A full-stack mobile experience for mothers across Nigeria — from onboarding to booking consultations with healthcare providers, HMO integration, in-app chat, and postpartum care. Live on iOS & Android.</p>
+        <div class="project-meta">
+          <div class="project-meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-val">Product Manager</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="meta-label">Platform</span>
+            <span class="meta-val">iOS & Android</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-val">Live ✓</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-visual">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <rect x="20" y="10" width="80" height="100" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <rect x="30" y="25" width="60" height="8" rx="4" fill="rgba(123,200,200,0.5)"/>
+          <rect x="30" y="40" width="45" height="6" rx="3" fill="rgba(255,255,255,0.2)"/>
+          <rect x="30" y="52" width="55" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+          <rect x="30" y="68" width="60" height="28" rx="8" fill="rgba(42,107,107,0.4)"/>
+          <circle cx="60" cy="95" r="5" fill="rgba(255,255,255,0.3)"/>
+        </svg>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <!-- WorkNigeria -->
+    <a href="worknigeria.html" class="project-card fade-in">
+      <span class="project-number">02</span>
+      <span class="project-tag tag-hr">HR Tech</span>
+      <div class="project-title">WorkNigeria — Job & Training Platform</div>
+      <p class="project-desc">Nigeria's leading HR tech platform. Led product discovery and a full UI upgrade of training & development services, enabling seamless booking and consultation scheduling.</p>
+      <div class="project-meta">
+        <div class="project-meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-val">Product Manager</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="meta-label">Impact</span>
+          <span class="meta-val">+7% revenue</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <!-- 3MTT -->
+    <a href="3mtt.html" class="project-card fade-in">
+      <span class="project-number">03</span>
+      <span class="project-tag tag-civic">Civic Tech · EdTech</span>
+      <div class="project-title">3MTT — Three Million Technical Talent</div>
+      <p class="project-desc">Federal Government of Nigeria's flagship digital skills programme. Built the job board and fellow-matching platform powering a 3 million learner initiative.</p>
+      <div class="project-meta">
+        <div class="project-meta-item">
+          <span class="meta-label">Scale</span>
+          <span class="meta-val">3M+ learners</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="meta-label">Sector</span>
+          <span class="meta-val">Government</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <!-- Terragon -->
+    <a href="terragon.html" class="project-card fade-in" style="grid-column: span 2;">
+      <span class="project-number">04</span>
+      <span class="project-tag tag-martech">MarTech · FinTech</span>
+      <div class="project-title">Terragon — White-Label Fintech for SMEs</div>
+      <p class="project-desc">Built a white-labeled embedded fintech product enabling Nigerian SMBs to fund Facebook ads using MTN airtime — unlocking digital advertising for the unbanked. Plus a B2B SaaS reporting dashboard that cut report generation time by 40%.</p>
+      <div class="project-meta">
+        <div class="project-meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-val">Product Manager</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="meta-label">Impact</span>
+          <span class="meta-val">40% time saved on reports</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="meta-label">Domain</span>
+          <span class="meta-val">MarTech · Embedded Finance</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label">Approach</div>
+  <h2>How I work<br>on <em>every</em> product.</h2>
+  <div class="process-steps fade-in">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Discover & Define</div>
+      <p class="step-desc">I start with the problem, not the solution. User interviews, market analysis, and stakeholder alignment before a single line of a PRD is written.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Shape & Prioritise</div>
+      <p class="step-desc">I translate messy insights into clear user stories, flows, and a prioritised roadmap that balances user needs with business goals.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Ship & Collaborate</div>
+      <p class="step-desc">I work hand-in-hand with engineers and designers through agile sprints — removing blockers, QA-ing features, and keeping everyone aligned.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Measure & Iterate</div>
+      <p class="step-desc">Launch isn't the end. I track metrics, gather user feedback, and use data to drive the next iteration — always improving.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2>Let's build something<br><em>worth using</em>.</h2>
+  <p>I'm open to full-time PM roles, contracts, and collaborations. If you're building something meaningful, I'd love to hear about it.</p>
+  <div class="contact-buttons">
+    <a href="mailto:esther.isifeh@gmail.com" class="btn-primary">Email me →</a>
+    <a href="https://linkedin.com/in/estherisifeh" target="_blank" class="pill-link">LinkedIn ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Esther Isifeh</span>
+  <div class="footer-links">
+    <a href="mailto:esther.isifeh@gmail.com">esther.isifeh@gmail.com</a>
+    <a href="https://linkedin.com/in/estherisifeh" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

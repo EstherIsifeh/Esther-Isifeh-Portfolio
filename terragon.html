@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terragon — Esther Isifeh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d; --ink-2: #3a3733; --ink-3: #7a756e;
+    --cream: #faf8f4; --cream-2: #f0ebe2; --cream-3: #e4ddd0;
+    --accent: #3d2060; --accent-2: #8b5cf6;
+    --accent-warm: #c8522a;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(250,248,244,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cream-3);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--ink); text-decoration: none; }
+  .nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--ink-2); text-decoration: none; border: 1px solid var(--cream-3); border-radius: 100px; padding: 0.45rem 1rem; transition: all 0.2s; }
+  .nav-back:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+  .case-hero {
+    padding: 9rem 3rem 5rem;
+    background: var(--accent);
+    color: white; position: relative; overflow: hidden;
+  }
+  .case-hero::before {
+    content: ''; position: absolute; top: -20%; right: -10%; width: 700px; height: 700px;
+    border-radius: 50%; background: rgba(255,255,255,0.03); pointer-events: none;
+  }
+  .case-hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .case-tag { display: inline-block; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border: 1px solid rgba(255,255,255,0.3); border-radius: 100px; padding: 0.35rem 1rem; color: rgba(255,255,255,0.8); margin-bottom: 1.5rem; }
+  .case-hero h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.25rem; color: white; }
+  .case-hero-desc { font-size: 1.05rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.75); max-width: 580px; margin-bottom: 3rem; }
+  .hero-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .hero-pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; padding: 0.45rem 1.1rem; font-size: 0.82rem; color: rgba(255,255,255,0.85); }
+  .hero-stats-bar { display: flex; gap: 0; margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 2rem; }
+  .h-stat { flex: 1; padding-right: 2rem; border-right: 1px solid rgba(255,255,255,0.12); margin-right: 2rem; }
+  .h-stat:last-child { border-right: none; margin-right: 0; }
+  .h-stat-num { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: white; display: block; line-height: 1; margin-bottom: 0.3rem; }
+  .h-stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); font-weight: 500; }
+
+  .case-body { max-width: 900px; margin: 0 auto; padding: 5rem 3rem; }
+  .case-section { margin-bottom: 4.5rem; }
+  .case-section-label { font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; color: var(--ink-3); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .case-section-label::after { content: ''; display: block; flex: 1; height: 1px; background: var(--cream-3); }
+  .case-section h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1.25rem; color: var(--ink); }
+  .case-section h2 em { font-style: italic; color: var(--accent-warm); }
+  .case-section p { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: var(--ink-2); margin-bottom: 1rem; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+  .info-card { background: var(--cream-2); border: 1px solid var(--cream-3); border-radius: 16px; padding: 1.75rem; }
+  .info-card-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); font-weight: 500; margin-bottom: 0.75rem; }
+  .info-card h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 0.6rem; }
+  .info-card p { font-size: 0.85rem; font-weight: 300; color: var(--ink-2); line-height: 1.7; margin: 0; }
+
+  .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+  .outcome-card { background: var(--accent); color: white; border-radius: 16px; padding: 1.75rem; text-align: center; }
+  .outcome-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; display: block; line-height: 1; margin-bottom: 0.4rem; }
+  .outcome-label { font-size: 0.78rem; color: rgba(255,255,255,0.7); font-weight: 400; }
+
+  .product-strip {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid var(--cream-3); border-radius: 16px; overflow: hidden;
+    margin: 2rem 0;
+  }
+  .product-panel { padding: 2rem; }
+  .product-panel:first-child { border-right: 1px solid var(--cream-3); }
+  .product-panel-tag { font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); margin-bottom: 0.75rem; }
+  .product-panel h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--ink); margin-bottom: 0.75rem; line-height: 1.3; }
+  .product-panel p { font-size: 0.85rem; font-weight: 300; color: var(--ink-2); line-height: 1.7; margin-bottom: 0.75rem; }
+  .impact-pill { display: inline-block; background: var(--accent); color: white; border-radius: 100px; padding: 0.3rem 0.9rem; font-size: 0.75rem; font-weight: 500; }
+
+  .insight-list { list-style: none; margin: 1.25rem 0; }
+  .insight-list li { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid var(--cream-3); font-size: 0.92rem; color: var(--ink-2); font-weight: 300; line-height: 1.65; }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-bullet { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 600; margin-top: 2px; }
+  .bullet-feat { background: #d1ecf1; color: #0c5460; }
+  .bullet-fix { background: #fef3cd; color: #8a6d00; }
+  .bullet-ux { background: #d4edda; color: #155724; }
+
+  .next-project { border-top: 1px solid var(--cream-3); padding: 3rem 0 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .next-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); font-weight: 500; }
+  .next-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; color: var(--ink); margin-top: 0.3rem; }
+  .next-link { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: var(--cream); text-decoration: none; padding: 0.85rem 2rem; border-radius: 100px; font-size: 0.88rem; font-weight: 500; transition: background 0.2s; }
+  .next-link:hover { background: var(--accent-warm); }
+
+  footer { padding: 2rem 3rem; background: var(--ink); color: rgba(255,255,255,0.35); display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
+  footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .case-hero { padding: 7rem 1.5rem 3.5rem; }
+    .case-body { padding: 3rem 1.5rem; }
+    .two-col, .outcomes, .product-strip { grid-template-columns: 1fr; }
+    .product-panel:first-child { border-right: none; border-bottom: 1px solid var(--cream-3); }
+    .hero-stats-bar { flex-direction: column; gap: 1.5rem; }
+    .h-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 1.5rem; margin-bottom: 0; }
+    .h-stat:last-child { border-bottom: none; }
+    footer { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Esther Isifeh</a>
+  <a href="index.html#projects" class="nav-back">← All projects</a>
+</nav>
+
+<div class="case-hero">
+  <div class="case-hero-inner">
+    <div class="case-tag">MarTech · Embedded Fintech · B2B SaaS</div>
+    <h1>Terragon — Unlocking Digital Advertising for Nigerian SMEs</h1>
+    <p class="case-hero-desc">Building embedded fintech products and a powerful reporting dashboard at Africa's leading data and marketing technology company.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">Web Platform</span>
+      <span class="hero-pill">Product Manager</span>
+      <span class="hero-pill">Jan 2022 – Jul 2023</span>
+      <span class="hero-pill">Enterprise B2B</span>
+    </div>
+    <div class="hero-stats-bar">
+      <div class="h-stat">
+        <span class="h-stat-num">40%</span>
+        <span class="h-stat-label">Reduction in report generation time</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-num">+10%</span>
+        <span class="h-stat-label">User awareness via knowledge base</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-num">SMEs</span>
+        <span class="h-stat-label">Unlocked for digital advertising</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-body">
+
+  <div class="case-section fade-in">
+    <div class="case-section-label">Overview</div>
+    <h2>Africa's leading MarTech —<br>building for the <em>unserved</em>.</h2>
+    <p>Terragon Group is Africa's leading data and marketing technology company, providing enterprises and SMEs with data-driven marketing solutions, audience targeting, and digital advertising capabilities across mobile and web.</p>
+    <p>As Product Manager, I owned two distinct product tracks: a white-labeled embedded fintech product for small businesses, and a B2B SaaS enterprise reporting dashboard used by major stakeholders to track revenue and campaign performance.</p>
+  </div>
+
+  <div class="case-section fade-in">
+    <div class="case-section-label">Products I Built</div>
+    <h2>Two products.<br><em>Different problems</em>. Same rigour.</h2>
+
+    <div class="product-strip">
+      <div class="product-panel">
+        <div class="product-panel-tag">Product 1 — Embedded Fintech</div>
+        <h3>SME Facebook Ads via MTN Airtime</h3>
+        <p>Millions of Nigerian small business owners wanted to run Facebook ads to grow their businesses — but were locked out by the requirement for bank cards or bank accounts they didn't have.</p>
+        <p>I led the design and launch of a white-labeled embedded fintech product that allowed SMBs to fund Facebook advertising campaigns directly using MTN airtime as payment — a first-of-its-kind solution in the market.</p>
+        <span class="impact-pill">Unlocked digital ads for card-constrained users</span>
+      </div>
+      <div class="product-panel">
+        <div class="product-panel-tag">Product 2 — B2B SaaS Dashboard</div>
+        <h3>Enterprise Revenue Reporting Dashboard</h3>
+        <p>Terragon's enterprise stakeholders were spending significant time manually pulling and compiling revenue reports — a slow, error-prone process that delayed decision-making.</p>
+        <p>I designed and delivered a more efficient product reporting dashboard that automated and streamlined revenue report generation for B2B SaaS enterprise clients, giving leadership real-time visibility into performance data.</p>
+        <span class="impact-pill">40% faster report generation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-section fade-in">
+    <div class="case-section-label">My Approach</div>
+    <h2>How I worked <em>at Terragon</em>.</h2>
+    <div class="two-col">
+      <div class="info-card">
+        <div class="info-card-label">Discovery & Prioritisation</div>
+        <h3>Customer & market research</h3>
+        <p>Gathered and prioritised customer and market requirements to inform product validation and development decisions. Conducted competitor analysis and stakeholder interviews before committing to any roadmap.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Cross-functional delivery</div>
+        <h3>Global team collaboration</h3>
+        <p>Worked with a globally distributed cross-functional team to build and manage Terragon's WhatsApp OTP service and WhatsApp Business API solution — coordinating across engineering, design, legal, and commercial teams.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Knowledge & documentation</div>
+        <h3>Knowledge base authorship</h3>
+        <p>Collaborated with the Marketing team to build Terragon's Knowledge Base — writing 8 product articles that increased user awareness and drove a 10% improvement in proactive self-serve support.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Stakeholder management</div>
+        <h3>Enterprise-level relationships</h3>
+        <p>Managed senior stakeholder relationships at enterprise level — translating complex business requirements into product specifications that engineering teams could execute with confidence.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-section fade-in">
+    <div class="case-section-label">Additional Work</div>
+    <h2>More products I contributed to<br>at <em>Terragon</em>.</h2>
+    <ul class="insight-list">
+      <li>
+        <div class="insight-bullet bullet-feat">✓</div>
+        <div><strong>WhatsApp OTP Service.</strong> Led product requirements and cross-functional delivery for Terragon's WhatsApp OTP (One-Time Password) service — enabling businesses to authenticate users via WhatsApp instead of SMS, with significantly better delivery rates.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-feat">✓</div>
+        <div><strong>WhatsApp Business API Solution.</strong> Contributed to the development and management of Terragon's WhatsApp Business API product — used by enterprises to run customer communication, support, and marketing at scale via WhatsApp.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-ux">✓</div>
+        <div><strong>Product Knowledge Base.</strong> Created 8 structured articles covering key product features and workflows — increasing user awareness and reducing support ticket volume by driving proactive self-service by 10%.</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="case-section fade-in">
+    <div class="case-section-label">Outcomes</div>
+    <h2>The <em>impact</em>.</h2>
+    <div class="outcomes">
+      <div class="outcome-card">
+        <span class="outcome-num">40%</span>
+        <span class="outcome-label">Faster revenue report generation for enterprise clients</span>
+      </div>
+      <div class="outcome-card" style="background: var(--accent-warm);">
+        <span class="outcome-num">+10%</span>
+        <span class="outcome-label">Increase in proactive user support from knowledge base</span>
+      </div>
+      <div class="outcome-card" style="background: #1a5c3a;">
+        <span class="outcome-num">1st</span>
+        <span class="outcome-label">Airtime-to-Facebook-ads product of its kind in Nigeria</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="next-project fade-in">
+    <div>
+      <div class="next-label">Back to beginning</div>
+      <div class="next-title">LavenderCare — Maternal Health Platform</div>
+    </div>
+    <a href="lavendercare.html" class="next-link">View project →</a>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2026 Esther Isifeh</span>
+  <a href="index.html">← Back to portfolio</a>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

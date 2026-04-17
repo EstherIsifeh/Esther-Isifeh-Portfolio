@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LavenderCare — Esther Isifeh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d; --ink-2: #3a3733; --ink-3: #7a756e;
+    --cream: #faf8f4; --cream-2: #f0ebe2; --cream-3: #e4ddd0;
+    --accent: #2a6b6b; --accent-2: #7bc8c8; --accent-warm: #c8522a;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(250,248,244,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cream-3);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--ink); text-decoration: none; }
+  .nav-back {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem; color: var(--ink-2); text-decoration: none;
+    border: 1px solid var(--cream-3); border-radius: 100px;
+    padding: 0.45rem 1rem; transition: all 0.2s;
+  }
+  .nav-back:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+  /* HERO */
+  .case-hero {
+    padding: 9rem 3rem 5rem;
+    background: var(--accent);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-hero::before {
+    content: '';
+    position: absolute; top: -50%; right: -10%; width: 600px; height: 600px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .case-hero-inner { max-width: 900px; margin: 0 auto; }
+  .case-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.15em;
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 100px;
+    padding: 0.35rem 1rem; color: rgba(255,255,255,0.8);
+    margin-bottom: 1.5rem;
+  }
+  .case-hero h1 {
+    font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300; line-height: 1.08; letter-spacing: -0.03em;
+    margin-bottom: 1.25rem; color: white;
+  }
+  .case-hero-desc {
+    font-size: 1.05rem; font-weight: 300; line-height: 1.75;
+    color: rgba(255,255,255,0.75); max-width: 580px; margin-bottom: 3rem;
+  }
+  .hero-pills { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .hero-pill {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px; padding: 0.45rem 1.1rem;
+    font-size: 0.82rem; color: rgba(255,255,255,0.85);
+  }
+  .hero-stats-bar {
+    display: flex; gap: 0; margin-top: 4rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 2rem;
+  }
+  .h-stat { flex: 1; padding-right: 2rem; border-right: 1px solid rgba(255,255,255,0.12); margin-right: 2rem; }
+  .h-stat:last-child { border-right: none; margin-right: 0; }
+  .h-stat-num { font-family: var(--serif); font-size: 2rem; font-weight: 300; color: white; display: block; line-height: 1; margin-bottom: 0.3rem; }
+  .h-stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); font-weight: 500; }
+
+  /* CONTENT */
+  .case-body { max-width: 900px; margin: 0 auto; padding: 5rem 3rem; }
+  .case-section { margin-bottom: 4.5rem; }
+  .case-section-label {
+    font-size: 0.68rem; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--ink-3); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .case-section-label::after { content: ''; display: block; flex: 1; height: 1px; background: var(--cream-3); }
+  .case-section h2 {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 300; letter-spacing: -0.02em; line-height: 1.2;
+    margin-bottom: 1.25rem; color: var(--ink);
+  }
+  .case-section h2 em { font-style: italic; color: var(--accent-warm); }
+  .case-section p {
+    font-size: 0.97rem; font-weight: 300; line-height: 1.85;
+    color: var(--ink-2); margin-bottom: 1rem;
+  }
+
+  /* 2-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+  .info-card {
+    background: var(--cream-2); border: 1px solid var(--cream-3);
+    border-radius: 16px; padding: 1.75rem;
+  }
+  .info-card-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); font-weight: 500; margin-bottom: 0.75rem; }
+  .info-card h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 0.6rem; }
+  .info-card p { font-size: 0.85rem; font-weight: 300; color: var(--ink-2); line-height: 1.7; margin: 0; }
+
+  /* OUTCOME CARDS */
+  .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+  .outcome-card {
+    background: var(--accent); color: white;
+    border-radius: 16px; padding: 1.75rem;
+    text-align: center;
+  }
+  .outcome-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; display: block; line-height: 1; margin-bottom: 0.4rem; }
+  .outcome-label { font-size: 0.78rem; color: rgba(255,255,255,0.7); font-weight: 400; }
+
+  /* FLOW DIAGRAM */
+  .flow-block {
+    background: var(--cream-2); border: 1px solid var(--cream-3);
+    border-radius: 16px; padding: 2rem; margin: 2rem 0;
+  }
+  .flow-block-title { font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); margin-bottom: 1.25rem; }
+  .flow-steps { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+  .flow-step {
+    background: white; border: 1px solid var(--cream-3); border-radius: 10px;
+    padding: 0.7rem 1.1rem; font-size: 0.82rem; color: var(--ink-2);
+    font-weight: 400; white-space: nowrap;
+  }
+  .flow-arrow { color: var(--ink-3); font-size: 1rem; flex-shrink: 0; }
+
+  /* BUG / INSIGHT LIST */
+  .insight-list { list-style: none; margin: 1.25rem 0; }
+  .insight-list li {
+    display: flex; gap: 0.9rem; align-items: flex-start;
+    padding: 1rem 0; border-bottom: 1px solid var(--cream-3);
+    font-size: 0.92rem; color: var(--ink-2); font-weight: 300; line-height: 1.65;
+  }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-bullet {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 600; margin-top: 2px;
+  }
+  .bullet-fix { background: #fef3cd; color: #8a6d00; }
+  .bullet-ux  { background: #d4edda; color: #155724; }
+  .bullet-feat { background: #d1ecf1; color: #0c5460; }
+
+  /* NEXT PROJECT NAV */
+  .next-project {
+    border-top: 1px solid var(--cream-3);
+    padding: 3rem 0 0;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .next-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); font-weight: 500; }
+  .next-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; color: var(--ink); margin-top: 0.3rem; }
+  .next-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--ink); color: var(--cream);
+    text-decoration: none; padding: 0.85rem 2rem;
+    border-radius: 100px; font-size: 0.88rem; font-weight: 500;
+    transition: background 0.2s;
+  }
+  .next-link:hover { background: var(--accent-warm); }
+
+  footer {
+    padding: 2rem 3rem; background: var(--ink); color: rgba(255,255,255,0.35);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem;
+  }
+  footer a { color: rgba(255,255,255,0.45); text-decoration: none; }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .case-hero { padding: 7rem 1.5rem 3.5rem; }
+    .case-body { padding: 3rem 1.5rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .outcomes { grid-template-columns: 1fr 1fr; }
+    .hero-stats-bar { flex-direction: column; gap: 1.5rem; }
+    .h-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 1.5rem; margin-bottom: 0; }
+    .h-stat:last-child { border-bottom: none; }
+    .flow-steps { flex-direction: column; align-items: flex-start; }
+    footer { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Esther Isifeh</a>
+  <a href="index.html#projects" class="nav-back">← All projects</a>
+</nav>
+
+<div class="case-hero">
+  <div class="case-hero-inner">
+    <div class="case-tag">HealthTech · FemTech · Mobile App</div>
+    <h1>LavenderCare — A Digital Village for Mothers</h1>
+    <p class="case-hero-desc">Building the end-to-end mobile experience for Nigeria's maternal health platform — from onboarding to consultation booking, in-app chat, and postpartum care.</p>
+    <div class="hero-pills">
+      <span class="hero-pill">iOS & Android</span>
+      <span class="hero-pill">Product Manager</span>
+      <span class="hero-pill">2024 – Present</span>
+      <span class="hero-pill">Live ✓</span>
+    </div>
+    <div class="hero-stats-bar">
+      <div class="h-stat">
+        <span class="h-stat-num">2</span>
+        <span class="h-stat-label">Platforms (iOS + Android)</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-num">3</span>
+        <span class="h-stat-label">User types supported</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-num">40%</span>
+        <span class="h-stat-label">Faster booking flow</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat-num">HMO</span>
+        <span class="h-stat-label">Integration shipped</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="case-body">
+
+  <!-- OVERVIEW -->
+  <div class="case-section fade-in">
+    <div class="case-section-label">Overview</div>
+    <h2>Motherhood doesn't start at birth.<br><em>Care shouldn't end there either.</em></h2>
+    <p>LavenderCare is a maternal health platform designed to support women across their motherhood journey — with a strong focus on postpartum care, where support is most often missing. The platform connects mothers with licensed healthcare providers (obstetricians, psychologists, counsellors) for online consultations, postpartum essentials, and community.</p>
+    <p>I joined as Product Manager to lead the mobile product experience — defining user flows, collaborating with engineers and designers, running user testing, and driving the app from early builds through to its live release on iOS and Android.</p>
+  </div>
+
+  <!-- MY ROLE -->
+  <div class="case-section fade-in">
+    <div class="case-section-label">Role & Scope</div>
+    <div class="two-col">
+      <div class="info-card">
+        <div class="info-card-label">What I owned</div>
+        <h3>End-to-end mobile product</h3>
+        <p>Onboarding, provider discovery, consultation booking, HMO payment flow, in-app chat, postpartum screening, and session management — all user flows from scratch.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">How I worked</div>
+        <h3>Cross-functional collaboration</h3>
+        <p>Partnered with engineers (mobile + backend), UI/UX designers, and the clinical team. Ran discovery sessions, wrote PRDs, managed sprint priorities, and QA'd every release.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Research methods</div>
+        <h3>User testing & bug triage</h3>
+        <p>Conducted user testing sessions with real mothers, documented UX friction points, and triaged bugs with clear severity ratings and reproduction steps.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-label">Stakeholders</div>
+        <h3>Founders, providers & HMO partners</h3>
+        <p>Aligned product priorities with the founding team, managed the provider onboarding experience, and coordinated with HMO partners for insurance integration.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- USER FLOWS -->
+  <div class="case-section fade-in">
+    <div class="case-section-label">User Flows Designed</div>
+    <h2>Two sides of the same <em>platform</em>.</h2>
+    <p>LavenderCare has two distinct user types — mothers seeking care, and providers delivering it. I designed and documented the full flow for both.</p>
+
+    <div class="flow-block">
+      <div class="flow-block-title">Mother — Booking a Consultation</div>
+      <div class="flow-steps">
+        <div class="flow-step">Browse providers</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Select date & time</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Attach brief + docs</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Choose payment</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">HMO or Paystack</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Booking confirmed</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Join session</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Rate provider</div>
+      </div>
+    </div>
+
+    <div class="flow-block">
+      <div class="flow-block-title">Healthcare Provider — Managing a Session</div>
+      <div class="flow-steps">
+        <div class="flow-step">Dashboard notification</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">View mother's profile</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">See session details + docs</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Conduct session</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">Mark as completed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCOVERIES / BUGS -->
+  <div class="case-section fade-in">
+    <div class="case-section-label">User Research & Bug Discovery</div>
+    <h2>What I found when real<br>mothers used the <em>app</em>.</h2>
+    <p>Through hands-on user testing sessions, I identified and documented critical UX issues and feature gaps. Below are representative findings that shaped our sprint priorities:</p>
+
+    <ul class="insight-list">
+      <li>
+        <div class="insight-bullet bullet-fix">Bug</div>
+        <div><strong>Cannot attach documents during booking.</strong> Mothers were unable to attach relevant health documents when booking a session, leaving providers without context. Logged and prioritised for immediate fix.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-ux">UX</div>
+        <div><strong>Rate filter on provider profile is not intuitive.</strong> The filter for session duration/rates required a non-obvious click interaction after selecting a time slot. New mothers were confused. Recommended clearer visual affordance.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-fix">Bug</div>
+        <div><strong>Chat history cannot be scrolled to the top.</strong> In the in-app chat with providers, mothers could not scroll back to see earlier messages. Critical for session continuity.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-ux">UX</div>
+        <div><strong>Bottom navigation bar lacks labels.</strong> Icons without text labels confused first-time users. Proposed adding labels: Home, Appointments, Store, Community, Profile.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-feat">Feature</div>
+        <div><strong>Booking reason note not visible in appointment summary.</strong> Mothers wrote a reason for seeing the provider but couldn't see it in the service summary screen post-booking. Added to roadmap.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-fix">Bug</div>
+        <div><strong>No back button on certain screens.</strong> Users were trapped on screens with no navigation back. Flagged as high-severity navigation bug.</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-ux">UX</div>
+        <div><strong>End-of-screening CTA copy needs improving.</strong> The final screening screen showed a generic "Save results" button. Rewrote to: "Well done Mama! You did great! Submit your screening and a LavenderCare care coordinator will review your results and speak with you shortly."</div>
+      </li>
+      <li>
+        <div class="insight-bullet bullet-fix">Bug</div>
+        <div><strong>Provider marks session complete but app prompts "Mark as completed" incorrectly.</strong> Confusing post-session state. Documented with screenshots and steps to reproduce for engineering.</div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- OUTCOMES -->
+  <div class="case-section fade-in">
+    <div class="case-section-label">Outcomes</div>
+    <h2>What we <em>shipped</em>.</h2>
+    <div class="outcomes">
+      <div class="outcome-card">
+        <span class="outcome-num">2</span>
+        <span class="outcome-label">Apps live on iOS & Android</span>
+      </div>
+      <div class="outcome-card" style="background: var(--accent-warm);">
+        <span class="outcome-num">HMO</span>
+        <span class="outcome-label">Insurance payment integration live</span>
+      </div>
+      <div class="outcome-card" style="background: #2d5a3d;">
+        <span class="outcome-num">40%</span>
+        <span class="outcome-label">Faster booking flow after UX improvements</span>
+      </div>
+    </div>
+    <p>The app is live and supports mothers across three distinct journeys: planning & conception, pregnancy, and postpartum. Corporate wellness and B2B products (Back-to-Work programmes, HR Capacity Building) are also live, all features I scoped and contributed to.</p>
+  </div>
+
+  <!-- SUPPORT PAGE NOTE -->
+  <div class="case-section fade-in">
+    <div class="case-section-label">Additional Contributions</div>
+    <h2>Beyond the app.</h2>
+    <p>I also contributed to the user support infrastructure — writing and structuring the LavenderCare Support Centre, covering getting started guides, consultation FAQs, billing information, security & privacy documentation, and technical issue guides. Good products need good support documentation; I made sure ours was thorough and user-friendly.</p>
+    <div class="info-card" style="margin-top: 1.25rem;">
+      <div class="info-card-label">Support content I wrote</div>
+      <p>Getting Started · Consultations & Providers · Account & Profile · Security & Privacy · Billing & Payments · Technical Issues · FAQs · Contact information</p>
+    </div>
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <div class="next-project fade-in">
+    <div>
+      <div class="next-label">Next project</div>
+      <div class="next-title">WorkNigeria — Nigeria's Leading HR Tech Platform</div>
+    </div>
+    <a href="worknigeria.html" class="next-link">View project →</a>
+  </div>
+
+</div>
+
+<footer>
+  <span>© 2026 Esther Isifeh</span>
+  <a href="index.html">← Back to portfolio</a>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
